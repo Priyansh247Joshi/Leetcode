@@ -1,0 +1,30 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) 
+    {
+        int n=nums.size();
+        int counter=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==0)
+            {
+                swap(nums[counter],nums[i]);
+                counter++;
+            }
+        }
+        counter=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==0)
+                counter++;
+        }
+        for(int i=counter;i<n;i++)
+        {
+            if(nums[i]==1)
+            {
+                swap(nums[counter],nums[i]);
+                counter++;
+            }
+        }
+    }
+};
