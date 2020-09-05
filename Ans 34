@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int extremeInsertionIndex(vector<int>& nums,int target,bool left)
+    {
+        int l=0;
+        int h=nums.size();
+        while(l<h)
+        {
+            int mid=(l+h)/2;
+            if(nums[mid] > target || (left && target==nums[mid]))
+                h=mid;
+            else
+                l=mid+1;
+        }
+        return l;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) 
+    {
+        vector<int> targetRange {-1,-1};
+        int leftidx=extremeInsertionIndex(nums,target,true);
+        if(leftidx==nums.size() || nums[leftidx]!=target)
+            return targetRange;
+        targetRange[0]=leftidx;
+        targetRange[1]=extremeInsertionIndex(nums,target,false)-1;
+        return targetRange;
+    }
+};
