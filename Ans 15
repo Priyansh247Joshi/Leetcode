@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) 
+    {
+        int n=nums.size();
+        sort(nums.begin(),nums.end());
+        vector<vector<int>> result;
+        for(int i=0;i<n;i++)
+        {
+            int j=i+1;
+            int k=n-1;
+            if(i>0 && nums[i]==nums[i-1])
+                continue;
+            while(j < k)
+            {
+                if(k < n-1 && nums[k]==nums[k+1])
+                {
+                    k--;
+                    continue;
+                }
+                if(nums[i] + nums[j] + nums[k] > 0)
+                    k--;
+                else if(nums[i] + nums[j] + nums[k] < 0)
+                    j++;
+                else
+                {
+                    vector<int> l;
+                    l.push_back(nums[i]);
+                    l.push_back(nums[j]);
+                    l.push_back(nums[k]);
+                    result.push_back(l);
+                    j++;
+                    k--;
+                }
+            }
+        }
+        return result;
+    }
+};
