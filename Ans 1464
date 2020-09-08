@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) 
+    {
+        int counter=0;
+        int n=nums.size();
+        int first=INT_MIN;
+        int second=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]>first)
+            {
+                first=nums[i];
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==first)
+                continue;
+            if(nums[i] > second)
+                second=nums[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==first)
+                counter++;
+        }
+        if(counter > 1 || second==INT_MIN)
+            return (first-1)*(first-1);
+        else
+            return (first-1)*(second-1);
+    }
+};
