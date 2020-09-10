@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int longestSubarray(vector<int>& nums) 
+    {
+        int n=nums.size();
+        bool haszero=false;
+        int curr=0;
+        int zeros=0;
+        int prev=0;
+        int max=0;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]==0)
+            {
+                haszero=true;
+                zeros++;
+                if(zeros==1)
+                {
+                    int chain=curr+prev;
+                    if(chain > max)
+                        max=chain;
+                    prev=curr;
+                    curr=0;
+                }
+                else
+                    prev=0;
+            }
+            else
+            {
+                curr++;
+                if(curr==1)
+                    zeros=0;
+            }
+        }
+        if(!haszero)
+            return n-1;
+        int chain=curr+prev;
+        if(chain > max)
+            max=chain;
+        return max;
+    }
+};
