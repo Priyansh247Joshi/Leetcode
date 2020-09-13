@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int result(vector<int>& A,int S)
+    {
+        if(S<0)
+            return 0;
+        int n=A.size();
+        int j=0;
+        int res=0;
+        for(int i=0;i<n;i++)
+        {
+            S=S-A[i];
+            while(S<0)
+            {
+                S+=A[j];
+                j++;
+            }
+            res+=i-j+1;
+        }
+        return res;
+    }
+    int numSubarraysWithSum(vector<int>& A, int S) 
+    {
+        return (result(A,S) - result(A,S-1));
+    }
+};
