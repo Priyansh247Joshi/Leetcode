@@ -1,0 +1,42 @@
+bool isValid(string s) 
+    {
+        stack <char> temp;
+        int length = s.length();
+        char top;
+        for(int i = 0; i< length; i++)
+        {
+  
+            if(s[i] == '(' || s[i] == '{' || s[i] == '[')
+                {
+                    temp.push(s[i]);
+                }
+            else
+                { 
+                    if(temp.empty())
+                    {
+                       return false;
+                    }
+                 else
+                 {
+                    top = temp.top();
+                    if(s[i] == ')' && top == '(' || 
+                        s[i] == '}' && top == '{' ||
+                        s[i] == ']' && top == '[') 
+                    {
+                    temp.pop();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+        }
+    }
+ if (temp.empty()){
+   return true;
+ }
+ else{
+   return false;
+ }
+    }
+};
