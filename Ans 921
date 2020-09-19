@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minAddToMakeValid(string S) 
+    {
+        int right=0;
+        int bal=0;
+        for(int i=0;i<S.size();i++)
+        {
+            if(S[i]=='(')
+                right++;
+            else
+            {
+                if(right==0)
+                    bal++;
+                else
+                    right--;
+            }
+        }
+        return right+bal;
+    }
+};
